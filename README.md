@@ -195,7 +195,7 @@ class Item extends Component {
 Save... and it should work now.
 
 ## Reusing Components
-The best thing about components is that they're reusable
+The best thing about components is that they're reusable. 
 Lets create a new component named ItemsList with three items inside.
 ```
 ...
