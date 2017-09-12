@@ -254,6 +254,42 @@ class ItemsList extends Component {
 }
 ...
 ```
+Have your Item Component render these items based on the passed properties:
+```
+...
+class Item extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {amount:0};
+    this.buy = this.buy.bind(this);
+    this.show = this.show.bind(this);
+  }
+
+  show() {
+    this.props.handleShow(this.props.name);
+  }
+
+  buy() {
+    this.setState({amount: this.state.amount + 1});
+  }
+
+  render() {
+    return (
+      <div>
+          <h4>{this.props.name}</h4>
+
+          <p>{this.props.description}</p>
+          <button onClick={this.buy}>Buy</button>
+          <button onClick={this.show}>Show</button>
+          <span> ${this.props.price}</span>
+          <span> (Cart: {this.state.amount} items.)</span>
+          <hr/>
+      </div>
+      );
+  }
+}
+...
+```
 
 #### Function
 Aside from data, you can also pass functions with props.
@@ -288,7 +324,7 @@ Pass it in a prop called handleShow on each of your Items
         />
       </div>
 ```
-Inside the item component, let's add a new button show with an onclick function.
+Inside the item component, let's add a new button show with an onClick function.
 ```
 <div>
     <h4>{this.props.name}</h4>
@@ -323,7 +359,7 @@ class Item extends Component {
 ...
 ```
 
-# Next:
+# Up Next:
 ## Passing Data between child components
 ...
 
