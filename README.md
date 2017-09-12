@@ -91,7 +91,7 @@ class Item extends Component {
   }
 }
 
-export default App;s
+export default Apps
 ```
 
 Then render it inside the component app
