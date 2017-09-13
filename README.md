@@ -354,7 +354,6 @@ class Item extends Component {
 ...
 ```
 
-# Up Next:
 ## Passing Data between child components
 The next thing we would want to do is calculate the total worth of the items in the cart.<br>
 To do this, we need to create a new component Total with a value from props total.
@@ -525,4 +524,139 @@ render() {
 ...
 ```
 ## Handling Forms
+Create a new component: ItemForm with three inputs and a submit button
+```
 ...
+class ItemForm extends Component {
+  render() {
+    return (
+      <form onSubmit = {this.submit}>
+        <input type="text" placeholder="Item Name" ref="name" />
+        <input type="text" placeholder="Item Price" ref="price" />
+        <br/>
+        <button>Create</button>
+        <hr/>
+      </form>
+      );
+  }
+}
+...
+```
+Render it below the Total
+```
+...
+
+  render() {
+    var theThis = this;
+    var items = this.state.items.map(function(item) {
+      return(
+          <Item name={item.name} description={item.description} price={item.price}
+         handleShow={theThis.showDetails}
+        handleTotal={theThis.calculate}
+         />
+        );
+    });
+    return(
+      <div>
+        {items}
+        <Total total={this.state.total}/>
+        <ItemForm/>
+      </div>
+      );
+  }
+}
+...
+```
+
+Create the function submit and a constructor to bind it.<br>
+Also create an alert to check if the submit is getting the form's value.
+```
+...
+class ItemForm extends Component {
+  constructor(props) {
+    super(props);
+    this.submit = this.submit.bind(this);
+  }
+
+  submit(e) {
+    e.preventDefault();
+    alert('Submitting '+this.refs.name.value);
+  }
+
+  render() {
+    return (
+      <form onSubmit = {this.submit}>
+        <input type="text" placeholder="Item Name" ref="name" />
+        <input type="text" placeholder="Item Description" ref="description" />
+        <input type="text" placeholder="Item Price" ref="price" />
+        <br/>
+        <button>Create</button>
+        <hr/>
+      </form>
+      );
+  }
+}
+...
+```
+
+Since the list of the products is in the ItemList, let's create the function createItem in there. Bind the function, too.
+```
+...
+class ItemsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {total: 0,
+      items: [
+      {name:"Lenovo",description:"Core i5 - 4gb ram - 256gb SSD", price: 540},
+      {name:"Dell",description:"Core i7 - 8gb ram - 1tb HDD",  price: 700},
+      {name:"Asus",description:"Core i3 - 4gb ram - 512gb HDD",  price: 429}
+      ]
+    }
+    this.calculate = this.calculate.bind(this);
+    this.createItem = this.createItem.bind(this);
+  }
+
+  createItem(item) {
+    this.setState({
+      items: this.state.items.concat(item)
+    });
+  }
+...
+```
+In the render, pass the function as a prop of ItemForm
+```
+...
+        {items}
+        <Total total={this.state.total}/>
+        <ItemForm handleCreate={this.createItem}/>
+      </div>
+...
+```
+Update the ItemForm component to use the function from the props<br>
+Create an object item to store the form values, and feed it to the function.<br>
+Lastly, blank the values.
+```
+...
+class ItemForm extends Component {
+  constructor(props) {
+    super(props);
+    this.submit = this.submit.bind(this);
+  }
+
+  submit(e) {
+    e.preventDefault();
+    var item = {
+      name: this.refs.name.value,
+      description: this.refs.description.value,
+      price: parseInt(this.refs.price.value) || 0
+    }
+    this.props.handleCreate(item);
+
+    this.refs.name.value = "";
+    this.refs.description.value = "";
+    this.refs.price.value = "";
+  }
+...
+```
+
+# The End

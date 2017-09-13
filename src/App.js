@@ -23,6 +23,13 @@ class ItemsList extends Component {
       ]
     }
     this.calculate = this.calculate.bind(this);
+    this.createItem = this.createItem.bind(this);
+  }
+
+  createItem(item) {
+    this.setState({
+      items: this.state.items.concat(item)
+    });
   }
 
   calculate(price) {
@@ -47,7 +54,42 @@ class ItemsList extends Component {
       <div>
         {items}
         <Total total={this.state.total}/>
+        <ItemForm handleCreate={this.createItem}/>
       </div>
+      );
+  }
+}
+
+class ItemForm extends Component {
+  constructor(props) {
+    super(props);
+    this.submit = this.submit.bind(this);
+  }
+
+  submit(e) {
+    e.preventDefault();
+    var item = {
+      name: this.refs.name.value,
+      description: this.refs.description.value,
+      price: parseInt(this.refs.price.value) || 0
+    }
+    this.props.handleCreate(item);
+
+    this.refs.name.value = "";
+    this.refs.description.value = "";
+    this.refs.price.value = "";
+  }
+
+  render() {
+    return (
+      <form onSubmit = {this.submit}>
+        <input type="text" placeholder="Item Name" ref="name" />
+        <input type="text" placeholder="Item Description" ref="description" />
+        <input type="text" placeholder="Item Price" ref="price" />
+        <br/>
+        <button>Create</button>
+        <hr/>
+      </form>
       );
   }
 }
