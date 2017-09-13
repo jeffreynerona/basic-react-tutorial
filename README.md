@@ -4,8 +4,8 @@
 A basic react tutorial bootstraped with create-react app
 
 ## Setup
-Install node
-Install create-react-app
+Install node<br>
+Install create-react-app<br>
 Generate your starting files
 ```
 create-react-app my-app
@@ -35,8 +35,8 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 #### Try editing some files
-To get started, open app.js with your favorite editor
-We're building our own app so delete everything inside return()
+To get started, open app.js with your favorite editor<br>
+We're building our own app so delete everything inside return()<br>
 Then add a div with className .my-app
 ```
 class App extends Component {
@@ -50,8 +50,8 @@ class App extends Component {
 }
 ```
 
-Let's change some styling...
-Open App.css and delete everything inside.
+Let's change some styling...<br>
+Open App.css and delete everything inside.<br>
 Add the class .my-app
 
 ```
@@ -138,7 +138,7 @@ Then update the button buy to call the function:
 Go ahead and test the button if it works.
 
 ## States
-To initialize a state, we need a constructor. 
+To initialize a state, we need a constructor.<br> 
 Make one above the function buy.
 
 ```
@@ -195,7 +195,7 @@ class Item extends Component {
 Save... and it should work now.
 
 ## Reusing Components
-The best thing about components is that they're reusable. 
+The best thing about components is that they're reusable. <br>
 Lets create a new component named ItemsList with three items inside.
 ```
 ...
@@ -292,7 +292,7 @@ class Item extends Component {
 ```
 
 #### Function
-Aside from data, you can also pass functions with props.
+Aside from data, you can also pass functions with props.<br>
 Inside ItemsList, create the function showDetails.
 ```
 ...
