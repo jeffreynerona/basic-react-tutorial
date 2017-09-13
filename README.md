@@ -9,7 +9,7 @@ A basic react tutorial bootstraped with create-react app
 - [Functions and Events](#functions-and-events)
 - [States](#states)
 - [Reusing Components](#reusing-components)
-- [Props](#props---passing-data-to-child-components)
+- [Props - Passing Data to child components](#props---passing-data-to-child-components)
 - [Passibg Data between child components](#passing-data-between-child-components)
 - [Handling Arrays](#handling-arrays)
 - [Handling Forms](#handling-forms)
