@@ -356,7 +356,97 @@ class Item extends Component {
 
 # Up Next:
 ## Passing Data between child components
+The next thing we would want to do is calculate the total worth of the items in the cart.<br>
+To do this, we need to create a new component Total with a value from props total.
+```
 ...
+class Total extends Component {
+  render() {
+    return (
+      <div>
+        <h3>Total: ${this.props.total}</h3>
+      </div>
+    )
+  }
+}
+...
+```
+We will be getting this value from the ItemList component, so let's create a constructor in it with a total : 0
+```
+...
+class ItemsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {total:0}
+  }
+...
+```
+Let's also create a function calculate that takes in a price to recalculate the new total
+```
+...
+class ItemsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {total:0}
+  }
+
+  calculate(price) {
+    this.setState({total: this.state.total+price});
+  }
+...
+```
+Now, render the total in the ItemList while passing in the state total as props, and pass the function calculate to each of the Items
+```
+...
+<div>
+        <Item name="Lenovo" 
+        description="Core i5 - 4gb ram - 256gb SSD" 
+        price={540}
+        handleShow={this.showDetails}
+        handleTotal={this.calculate}
+        />
+        <Item name="Dell" 
+        description="Core i7 - 8gb ram - 1tb HDD" 
+        price={700}
+        handleShow={this.showDetails}
+        handleTotal={this.calculate}
+        />
+        <Item name="Asus" 
+        description="Core i3 - 4gb ram - 512gb HDD" 
+        price={429}
+        handleShow={this.showDetails}
+        handleTotal={this.calculate}
+        />
+        <Total total={this.state.total}/>
+      </div>
+...
+```
+Don't forget to bind the calculate function to the ItemList
+```
+...
+class ItemsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {total:0};
+    this.calculate = this.calculate.bind(this);
+  }
+...
+
+```
+
+Update your buy function in the item to use the props handleTotal
+```
+...
+
+buy() {
+    this.setState({amount: this.state.amount + 1});
+    this.props.handleTotal(this.props.price);
+  }
+...
+```
+
+Try buying some items...
+
 
 ## Handling Arrays
 ...
