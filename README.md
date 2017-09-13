@@ -262,11 +262,6 @@ class Item extends Component {
     super(props);
     this.state = {amount:0};
     this.buy = this.buy.bind(this);
-    this.show = this.show.bind(this);
-  }
-
-  show() {
-    this.props.handleShow(this.props.name);
   }
 
   buy() {
