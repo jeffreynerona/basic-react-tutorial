@@ -15,7 +15,13 @@ class App extends Component {
 class ItemsList extends Component {
   constructor(props) {
     super(props);
-    this.state = {total:0};
+    this.state = {total: 0,
+      items: [
+      {name:"Lenovo",description:"Core i5 - 4gb ram - 256gb SSD", price: 540},
+      {name:"Dell",description:"Core i7 - 8gb ram - 1tb HDD",  price: 700},
+      {name:"Asus",description:"Core i3 - 4gb ram - 512gb HDD",  price: 429}
+      ]
+    }
     this.calculate = this.calculate.bind(this);
   }
 
@@ -28,26 +34,18 @@ class ItemsList extends Component {
   }
 
   render() {
+    var theThis = this;
+    var items = this.state.items.map(function(item) {
+      return(
+          <Item name={item.name} description={item.description} price={item.price}
+         handleShow={theThis.showDetails}
+        handleTotal={theThis.calculate}
+         />
+        );
+    });
     return(
       <div>
-        <Item name="Lenovo" 
-        description="Core i5 - 4gb ram - 256gb SSD" 
-        price={540}
-        handleShow={this.showDetails}
-        handleTotal={this.calculate}
-        />
-        <Item name="Dell" 
-        description="Core i7 - 8gb ram - 1tb HDD" 
-        price={700}
-        handleShow={this.showDetails}
-        handleTotal={this.calculate}
-        />
-        <Item name="Asus" 
-        description="Core i3 - 4gb ram - 512gb HDD" 
-        price={429}
-        handleShow={this.showDetails}
-        handleTotal={this.calculate}
-        />
+        {items}
         <Total total={this.state.total}/>
       </div>
       );

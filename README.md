@@ -449,7 +449,80 @@ Try buying some items...
 
 
 ## Handling Arrays
+Data from APIs would usually come in the from array of objects.<br>
+Let's create the items from these arrays instead of manual data in props.<br>
+Update your ItemList state and add some items
+```
 ...
+class ItemsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {total: 0,
+      items: [
+      {name:"Lenovo",description:"Core i5 - 4gb ram - 256gb SSD", price: 540},
+      {name:"Dell",description:"Core i7 - 8gb ram - 1tb HDD",  price: 700},
+      {name:"Asus",description:"Core i3 - 4gb ram - 512gb HDD",  price: 429}
+      ]
+    }
+    this.calculate = this.calculate.bind(this);
+  }
+...
+```
+Inside the render, create a new variable and loop through the array of items.
+```
+...
+showDetails(name) {
+    alert("The product "+name+" is available for free shipping");
+  }
 
+  render() {
+    var items = this.state.items.map(function(item) {
+      return(
+          <Item name={item.name} description={item.description} price={item.price}
+         handleShow={this.showDetails}
+        handleTotal={this.calculate}
+         />
+        );
+    });
+...
+```
+`this` wouldn't work inside the map function so create a variable to store `this` and replace them.
+```
+...
+  render() {
+    var theThis = this;
+    var items = this.state.items.map(function(item) {
+      return(
+          <Item name={item.name} description={item.description} price={item.price}
+         handleShow={theThis.showDetails}
+        handleTotal={theThis.calculate}
+         />
+        );
+    });
+...
+```
+Then replace the items with the variable `items` you created:
+```
+...
+render() {
+    var theThis = this;
+    var items = this.state.items.map(function(item) {
+      return(
+          <Item name={item.name} description={item.description} price={item.price}
+         handleShow={theThis.showDetails}
+        handleTotal={theThis.calculate}
+         />
+        );
+    });
+    return(
+      <div>
+        {items}
+        <Total total={this.state.total}/>
+      </div>
+      );
+  }
+}
+...
+```
 ## Handling Forms
 ...
