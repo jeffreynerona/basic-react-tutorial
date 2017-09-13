@@ -3,9 +3,20 @@
 
 A basic react tutorial bootstraped with create-react app
 
+## Table of Contents
+- [Setup](#setup)
+- [Creating New Components](#creating-new-components)
+- [Functions and Events](#functions-and-events)
+- [States](#states)
+- [Reusing Components](#reusing-components)
+- [Props](#props---passing-data-to-child-components)
+- [Passibg Data between child components](#passing-data-between-child-components)
+- [Handling Arrays](#handling-arrays)
+- [Handling Forms](#handling-forms)
+
 ## Setup
-Install node<br>
-Install create-react-app<br>
+Install nodejs (https://nodejs.org)<br>
+Install create-react-app (https://github.com/facebookincubator/create-react-app)<br>
 Generate your starting files
 ```
 create-react-app my-app
