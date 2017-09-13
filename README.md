@@ -543,8 +543,9 @@ class ItemForm extends Component {
     return (
       <form onSubmit = {this.submit}>
         <input type="text" placeholder="Item Name" ref="name" />
-        <input type="text" placeholder="Item Price" ref="price" />
-        <br/>
+        <input type="text" placeholder="Item Description" ref="description" />
+        <input type="text" placeholder="Item Price" ref"price" />
+        <br/>
         <button>Create</button>
         <hr/>
       </form>
