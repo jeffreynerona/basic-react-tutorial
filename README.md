@@ -72,7 +72,7 @@ class App extends Component {
   render() {
     return (
       <div className='my-app' >
-        <Item/>
+        
       </div>
     );
   }
