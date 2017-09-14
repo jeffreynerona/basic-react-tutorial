@@ -38,9 +38,9 @@ my-app/
     index.js
     logo.svg
 ```
-In the project directory, you can run:
+In the project directory, run:
 ### `npm start`
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser. (npm start might open it for you)
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
@@ -76,7 +76,8 @@ Add the class .my-app
 ```
 
 ## Creating new Components
-Create a new component Item
+Components let you split the UI into different pieces.<br>
+Create a new component `Item`
 ```
 ...
 class App extends Component {
@@ -106,6 +107,7 @@ export default Apps
 ```
 
 Then render it inside the component app
+
 ```
 ...
 class App extends Component {
@@ -149,8 +151,13 @@ Then update the button buy to call the function:
 Go ahead and test the button if it works.
 
 ## States
+State is similar to props, but it is private and fully controlled by the component.
+
 To initialize a state, we need a constructor.<br> 
+When implementing the constructor for a Component subclass, you should call super(props) before any other statement.<br>
+Otherwise,  this.props will be undefined in the constructor, which can lead to bugs.<br>
 Make one above the function buy.
+
 
 ```
 ...
@@ -164,7 +171,7 @@ class Item extends Component {
   ...
 ```
 
-Display it in the Item render:
+Display it in the state amount in the Item render:
 ```
 ...
 <div>
@@ -241,7 +248,8 @@ class App extends Component {
 
 
 ## Props - Passing Data to Child Components
-When creating the Item component inside the ItemsList, we can pass in options that can later be used by the component.
+When creating the Item component inside the ItemsList, we can pass in options that can later be used by the component.<br>
+This will let you reuse components but give them different properties.
 #### Data
 Update your ItemsList:
 ```
