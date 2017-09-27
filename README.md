@@ -679,4 +679,7 @@ class ItemForm extends Component {
 ...
 ```
 
-# The End
+# What's next?
+- Learn about exporting and importing components
+- Split your components in different files
+- Learn about ES6, in here we used `.bind(this)` but you can also do fat arrow functions.
